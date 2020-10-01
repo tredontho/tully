@@ -7,6 +7,7 @@ let
   haskellDeps = ps: with ps; [
     base
     text
+    time
   ];
 
   ghc = haskellPackages.ghcWithPackages haskellDeps;
