@@ -1,1 +1,3 @@
-module Tully where
+module Tully(module Types) where
+
+import Types
