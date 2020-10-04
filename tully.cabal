@@ -48,10 +48,12 @@ extra-source-files:  CHANGELOG.md
 
 library
   -- Modules exported by the library.
-  exposed-modules:     Tully
+  exposed-modules:     Transaction,
+                       Account,
+                       Types
 
   -- Modules included in this library but not exported.
-  other-modules:       Types
+  -- other-modules:       
 
   -- LANGUAGE extensions used by modules in this package.
   -- other-extensions:
@@ -103,5 +105,6 @@ test-suite tully-test
 
   -- Test dependencies.
   build-depends:       base ^>=4.13.0.0,
-                       tully
+                       tully,
+                       time
 
