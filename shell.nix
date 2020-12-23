@@ -1,26 +1,16 @@
-{nixpkgs ? import <nixpkgs> {} }:
-
 let
-  inherit (nixpkgs) pkgs;
-  inherit (pkgs) haskellPackages;
-
-  haskellDeps = ps: with ps; [
-    base
-    text
-    time
-  ];
-
-  ghc = haskellPackages.ghcWithPackages haskellDeps;
-
-  nixPackages = [
-    ghc
-    haskellPackages.cabal-install
-    pkgs.ghcid
-    pkgs.ormolu
-    pkgs.hlint
-  ];
+  sources = import ./nix/sources.nix;
 in
-pkgs.stdenv.mkDerivation {
-  name = "env";
-  buildInputs = nixPackages;
-}
+  {pkgs ? import sources.nixpkgs {} }:
+  pkgs.mkShell {
+    buildInputs = with pkgs; [
+      sources.niv
+      ghc
+      cabal-install
+      ghcid
+      hlint
+      ormolu
+      zlib
+      haskellPackages.ghcide
+    ];
+  }
